@@ -144,7 +144,7 @@ def positions_for(tokens, past_length):
     return expand_tile(past_length + tf.range(nsteps), batch_size)
 
 
-def model(hparams, X, past=None, scope='model', reuse=False):
+def model(hparams, X, past=None, scope='model', reuse=False,emb=False):
     with tf.variable_scope(scope, reuse=reuse):
         results = {}
         batch, sequence = shape_list(X)
@@ -167,6 +167,8 @@ def model(hparams, X, past=None, scope='model', reuse=False):
             presents.append(present)
         results['present'] = tf.stack(presents, axis=1)
         h = norm(h, 'ln_f')
+        if(emb):
+            return h
 
         # Language model loss.  Do tokens <n predict token n?
         h_flat = tf.reshape(h, [batch*sequence, hparams.n_embd])

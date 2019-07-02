@@ -324,7 +324,7 @@ def finetune(sess,
 
 
 def load_gpt2(sess,
-              run_name="run1"):
+              run_name="run1",emb=False):
     """Loads the model checkpoint into a TensorFlow session
     for repeated predictions.
     """
@@ -338,8 +338,9 @@ def load_gpt2(sess,
         hparams.override_from_dict(json.load(f))
 
     context = tf.placeholder(tf.int32, [1, None])
-    output = model.model(hparams=hparams, X=context)
-
+    
+    output = model.model(hparams=hparams, X=context,emb)
+    
     ckpt = tf.train.latest_checkpoint(checkpoint_path)
     saver = tf.train.Saver(allow_empty=True)
     sess.run(tf.global_variables_initializer())
