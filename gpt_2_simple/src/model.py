@@ -168,7 +168,7 @@ def model(hparams, X, past=None, scope='model', reuse=False,emb=False):
         results['present'] = tf.stack(presents, axis=1)
         h = norm(h, 'ln_f')
         if(emb):
-            return h
+            return h.eval()
 
         # Language model loss.  Do tokens <n predict token n?
         h_flat = tf.reshape(h, [batch*sequence, hparams.n_embd])
