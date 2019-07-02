@@ -125,8 +125,8 @@ def finetune(sess,
     See that file for parameter definitions.
     """
 
-    CHECKPOINT_DIR = 'checkpoint'
-    SAMPLE_DIR = 'samples'
+    CHECKPOINT_DIR = 'content/drive/My Drive/gpt/checkpoint'
+    SAMPLE_DIR = 'content/drive/My Drive/gpt/samples'
 
     checkpoint_path = os.path.join(CHECKPOINT_DIR, run_name)
 
@@ -329,7 +329,7 @@ def load_gpt2(sess,
     for repeated predictions.
     """
 
-    CHECKPOINT_DIR = 'checkpoint'
+    CHECKPOINT_DIR = 'content/drive/My Drive/gpt/checkpoint'
 
     checkpoint_path = os.path.join(CHECKPOINT_DIR, run_name)
 
@@ -378,8 +378,8 @@ def generate(sess,
     if prefix == '':
         prefix = None
 
-    CHECKPOINT_DIR = 'checkpoint'
-    SAMPLE_DIR = 'samples'
+    CHECKPOINT_DIR = 'content/drive/My Drive/gpt/checkpoint'
+    SAMPLE_DIR = 'content/drive/My Drive/gpt/samples'
 
     checkpoint_path = os.path.join(CHECKPOINT_DIR, run_name)
 
