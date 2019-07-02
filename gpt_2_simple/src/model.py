@@ -155,6 +155,8 @@ def model(hparams, X, past=None, scope='model', reuse=False,emb=False):
                              initializer=tf.random_normal_initializer(stddev=0.02))
         past_length = 0 if past is None else tf.shape(past)[-2]
         h = tf.gather(wte, X) + tf.gather(wpe, positions_for(X, past_length))
+        if(emb):
+            results["h_prije"]=h
 
         # Transformer
         presents = []
@@ -172,6 +174,8 @@ def model(hparams, X, past=None, scope='model', reuse=False,emb=False):
         # Language model loss.  Do tokens <n predict token n?
         h_flat = tf.reshape(h, [batch*sequence, hparams.n_embd])
         logits = tf.matmul(h_flat, wte, transpose_b=True)
+        if(emb):
+            results["logits_prije"]=logits
         logits = tf.reshape(logits, [batch, sequence, hparams.n_vocab])
         results['logits'] = logits
         if(emb):
