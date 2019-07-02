@@ -339,7 +339,7 @@ def load_gpt2(sess,
 
     context = tf.placeholder(tf.int32, [1, None])
     
-    output = model.model(hparams=hparams, X=context,emb)
+    output = model.model(hparams=hparams, X=context,emb=emb)
     
     ckpt = tf.train.latest_checkpoint(checkpoint_path)
     saver = tf.train.Saver(allow_empty=True)
